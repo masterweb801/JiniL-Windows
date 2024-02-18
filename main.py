@@ -1,3 +1,5 @@
+import os
+import sys
 import ctypes
 import time
 import threading
@@ -14,7 +16,11 @@ class MainWindow(QMainWindow):
         self.browser = QWebEngineView()
         self.browser.setUrl(QUrl("http://jinil.rf.gd/"))
         
-        self.pmap = QtGui.QPixmap("./sps.png")
+        if os.path.isfile(os.path.join(sys.path[2], "sps.png")):
+            self.pmap = QtGui.QPixmap(os.path.join(sys.path[2], "sps.png"))
+        elif os.path.isfile(os.path.join(sys.path[0], "sps.png")):
+            self.pmap = QtGui.QPixmap(os.path.join(sys.path[0], "sps.png"))
+
         self.splash_label = QLabel()
         self.splash_label.setPixmap(self.pmap)
         self.splash_label.setScaledContents(True)
@@ -24,7 +30,10 @@ class MainWindow(QMainWindow):
         t.start()
 
         self.showMaximized()
-        self.setWindowIcon(QtGui.QIcon("./icon.jpg"))
+        if os.path.isfile(os.path.join(sys.path[2], "icon.jpg")):
+            self.setWindowIcon(QtGui.QIcon(os.path.join(sys.path[2], "icon.jpg")))
+        elif os.path.isfile(os.path.join(sys.path[0], "icon.jpg")):
+            self.setWindowIcon(QtGui.QIcon(os.path.join(sys.path[0], "icon.jpg")))
 
     def label_close(self):
         time.sleep(2)
@@ -34,10 +43,15 @@ class MainWindow(QMainWindow):
 
 app = QApplication(argv)
 QApplication.setApplicationName("JiniL")
-QApplication.setWindowIcon(QtGui.QIcon("./icon.jpg"))
+if os.path.isfile(os.path.join(sys.path[2], "icon.jpg")):
+    QApplication.setWindowIcon(QtGui.QIcon(os.path.join(sys.path[2], "icon.jpg")))
+elif os.path.isfile(os.path.join(sys.path[0], "icon.jpg")):
+    QApplication.setWindowIcon(QtGui.QIcon(os.path.join(sys.path[0], "icon.jpg")))
+    
 
 my_appid = 'logic_realm.jinil.1.2' # arbitrary string
 ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(my_appid)
 
 window = MainWindow()
 app.exec_()
+    
