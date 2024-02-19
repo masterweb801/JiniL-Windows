@@ -30,10 +30,10 @@ class MainWindow(QMainWindow):
         t.start()
 
         self.showMaximized()
-        if os.path.isfile(os.path.join(sys.path[2], "icon.jpg")):
-            self.setWindowIcon(QtGui.QIcon(os.path.join(sys.path[2], "icon.jpg")))
-        elif os.path.isfile(os.path.join(sys.path[0], "icon.jpg")):
-            self.setWindowIcon(QtGui.QIcon(os.path.join(sys.path[0], "icon.jpg")))
+        if os.path.isfile(os.path.join(sys.path[2], "icon.ico")):
+            self.setWindowIcon(QtGui.QIcon(os.path.join(sys.path[2], "icon.ico")))
+        elif os.path.isfile(os.path.join(sys.path[0], "icon.ico")):
+            self.setWindowIcon(QtGui.QIcon(os.path.join(sys.path[0], "icon.ico")))
 
     def label_close(self):
         time.sleep(2)
@@ -43,13 +43,13 @@ class MainWindow(QMainWindow):
 
 app = QApplication(argv)
 QApplication.setApplicationName("JiniL")
-if os.path.isfile(os.path.join(sys.path[2], "icon.jpg")):
-    QApplication.setWindowIcon(QtGui.QIcon(os.path.join(sys.path[2], "icon.jpg")))
-elif os.path.isfile(os.path.join(sys.path[0], "icon.jpg")):
-    QApplication.setWindowIcon(QtGui.QIcon(os.path.join(sys.path[0], "icon.jpg")))
+if os.path.isfile(os.path.join(sys.path[2], "icon.ico")):
+    QApplication.setWindowIcon(QtGui.QIcon(os.path.join(sys.path[2], "icon.ico")))
+elif os.path.isfile(os.path.join(sys.path[0], "icon.ico")):
+    QApplication.setWindowIcon(QtGui.QIcon(os.path.join(sys.path[0], "icon.ico")))
     
 
-my_appid = 'logic_realm.jinil.1.2' # arbitrary string
+my_appid = 'logic_realm.jinil.1.2.1' # arbitrary string
 ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(my_appid)
 
 window = MainWindow()
